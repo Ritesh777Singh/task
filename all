@@ -1,1 +1,200 @@
 
+#include <stdio.h>
+#include <ctype.h>  // For character classification and case conversion functions
+#include <string.h> // For strlen() and strcspn()
+
+// Function to convert a string to lowercase
+void toLowerCase(char *str) {
+    while (*str) {
+        *str = tolower(*str);
+        str++;
+    }
+}
+
+// Function to convert a string to uppercase
+void toUpperCase(char *str) {
+    while (*str) {
+        *str = toupper(*str);
+        str++;
+}
+}
+
+// Function to swap case of a string
+void swapCase(char *str) {
+    while (*str) {
+       if (islower(*str)) {
+       //     *str = toupper(*str);
+        } else if (isupper(*str)) {
+           *str = tolower(*str);
+        }
+        str++;
+ }
+}
+
+// Function to convert a string to title case
+void toTitleCase(char *str) {
+    int inWord = 0;
+   while (*str) {
+     if (isalpha(*str)) {
+            if (!inWord) {
+                *str = toupper(*str);
+              inWord = 1;
+                   } else {
+                *str = tolower(*str);
+            }
+        } else {
+        inWord = 0;
+       }
+        str++;
+    }
+}
+
+// Function to capitalize the first letter of the string and make the rest lowercase
+void toCapitalizeCase(char *str) {
+    int isFirst = 1;
+   while (*str) {
+     if (isalpha(*str)) {
+            if (isFirst) {
+             *str = toupper(*str);
+               isFirst = 0;
+            } else {
+               *str = tolower(*str);
+         }
+    } else {
+            isFirst = 1;
+        }
+       str++;
+ }
+}
+
+// Function to count vowels in a string
+int countVowels(const char *str) {
+   int count = 0;
+    while (*str) {
+        char c = tolower(*str);
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+          count++;
+      }
+        str++;
+    }
+    return count;
+}
+
+// Function to count consonants in a string
+int countConsonants(const char *str) {
+   int count = 0;
+    while (*str) {
+        char c = tolower(*str);
+       if (isalpha(c) && !strchr("aeiou", c)) {
+            count++;
+        }
+        str++;
+    }
+    return count;
+}
+
+// Function to count digits in a string
+int countDigits(const char *str) {
+    int count = 0;
+    while (*str) {
+       if (isdigit(*str)) {
+           count++;
+        }
+        str++;
+   }
+  return count;
+}
+
+// Function to count spaces in a string
+int countSpaces(const char *str) {
+    int count = 0;
+    while (*str) {
+        if (isspace(*str)) {
+            count++;
+      }
+        str++;
+}
+    return count;
+}
+
+// Function to count punctuation in a string
+int countPunctuation(const char *str) {
+ int count = 0;
+    while (*str) {
+        if (ispunct(*str)) {
+            count++;
+        }
+      str++;
+  }
+    return count;
+}
+
+// Function to count words in a string
+int countWords(const char *str) {
+ int count = 0;
+    int inWord = 0;
+    while (*str) {
+        if (isalpha(*str)) {
+            if (!inWord) {
+          count++;
+                inWord = 1;
+            }
+      } else {
+           inWord = 0;
+        }
+      str++;
+  }
+   return count;
+}
+
+// Function to count characters in a string
+int countCharacters(const char *str) {
+    return strlen(str);
+}
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0'; // Remove newline character if present
+
+    char temp[100]; // Temporary string for manipulation
+
+    // Lowercase
+    strcpy(temp, str);
+    toLowerCase(temp);
+    printf("Lowercase: %s\n", temp);
+
+    // Uppercase
+    strcpy(temp, str);
+    toUpperCase(temp);
+    printf("Uppercase: %s\n", temp);
+
+    // Swap case
+    strcpy(temp, str);
+    swapCase(temp);
+    printf("Swapcase: %s\n", temp);
+
+    // Title case
+    strcpy(temp, str);
+    toTitleCase(temp);
+    printf("Titlecase: %s\n", temp);
+
+    // Capitalize case
+    strcpy(temp, str);
+    toCapitalizeCase(temp);
+    printf("CapitalizeCase: %s\n", temp);
+
+    // Counts
+    printf("Number of vowels: %d\n", countVowels(str));
+    printf("Number of consonants: %d\n", countConsonants(str));
+    printf("Number of digits: %d\n", countDigits(str));
+    printf("Number of spaces: %d\n", countSpaces(str));
+    printf("Number of punctuation: %d\n", countPunctuation(str));
+    printf("Number of words: %d\n", countWords(str));
+    printf("Number of characters: %d\n", countCharacters(str));
+
+    return 0;
+}
+
