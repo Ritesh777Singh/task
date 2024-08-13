@@ -1,1 +1,34 @@
+#include <stdio.h> 
+#include <ctype.h>
+#include <string.h>
 
+void toCapitalizeCase(char *str) {
+    int isFirst = 1;
+   while (*str) {
+     if (isalpha(*str)) {
+            if (isFirst) {
+             *str = toupper(*str);
+               isFirst = 0;
+            } else {
+               *str = tolower(*str);
+         }
+    } else {
+            isFirst = 1;
+        }
+       str++;
+ }
+}
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+
+    char temp[100];
+     strcpy(temp, str);
+    toCapitalizeCase(temp);
+    printf("CapitalizeCase: %s\n", temp);
+    return 0;
+}
