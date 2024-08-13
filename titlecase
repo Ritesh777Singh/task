@@ -1,1 +1,33 @@
+#include <stdio.h> 
+#include <ctype.h>
+#include <string.h>
 
+void toTitleCase(char *str) {
+    int inWord = 0;
+    while (*str) {
+       if (isalpha(*str)) {
+            if (!inWord) {
+                *str = toupper(*str);
+              inWord = 1;
+                   } else {
+                *str = tolower(*str);
+            }
+        } else {
+            inWord = 0;
+        }
+        str++;
+    }
+}
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+
+    char temp[100];
+     strcpy(temp, str);
+    toTitleCase(temp);
+    printf("Titlecase: %s\n", temp);
+    return 0;
+}
