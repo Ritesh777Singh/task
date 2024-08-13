@@ -1,1 +1,25 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+void swapCase(char *str) {
+    while (*str) {
+        if (islower(*str)) {
+            *str = toupper(*str); 
+        } else if (isupper(*str)) {
+            *str = tolower(*str); 
+        }
+        str++;
+    }
+}
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); 
+    str[strcspn(str, "\n")] = '\0';
+    swapCase(str);
+    printf("String with swapped case: %s\n", str);
+    return 0;
+}
 
