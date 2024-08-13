@@ -14,3 +14,11 @@ int main() {
    printf("lowercase string :%s",str);
     return 0;
 }
+
+
+
+OUTPUT
+
+Enter string : ABCDEFG
+lowercase string :abcdefg
+
