@@ -1,1 +1,28 @@
+#include <stdio.h> 
+#include <ctype.h>
+#include <string.h>
 
+int countConsonants(const char *str) {
+   int count = 0;
+    while (*str) {
+        char c = tolower(*str);
+       if (isalpha(c) && !strchr("aeiou", c)) {
+            count++;
+        }
+        str++;
+    }
+    return count;
+}
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0';
+
+    char temp[100];
+   
+   printf("Number of consonants: %d\n", countConsonants(str));
+    return 0;
+}
